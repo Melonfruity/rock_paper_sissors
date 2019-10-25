@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+  </head>
+  <body>
+
+    <script>
+
+      const computerPlay = () => {
+        const hand = Math.floor(Math.random() * 3);
+        if(hand === 0){
+          return 'ROCK';
+        } else if(hand === 1){
+          return 'PAPER';
+        } else {
+          return 'SISSOR';
+        }
+      }
+
+      const game = () => {
+
+        let pScore = 0;
+        let cScore = 0;
+
+        const singlePlay = (playerSelection, computerSelection) => {
+
+          playerSelection = playerSelection.toUpperCase();
+
+          if (playerSelection === 'ROCK' && computerSelection === 'PAPER'){
+            cScore++;
+            return 'You Lose! Paper beats Rock';
+          } else if(playerSelection === 'PAPER' && computerSelection === 'SISSOR'){
+            cScore++;
+            return 'You Lose! Sissor beats Paper';
+          } else if(playerSelection === 'SISSOR' && computerSelection === 'ROCK'){
+            cScore++;
+            return 'You Lose! Rock beats Sissor';
+          } else if(playerSelection === 'PAPER' && computerSelection === 'ROCK'){
+            pScore++;
+            return 'You Win! Paper beats Rock';
+          } else if(playerSelection === 'SISSOR' && computerSelection === 'PAPER'){
+            pScore++;
+            return 'You Win! Sissor beats Paper';
+          } else if(playerSelection === 'ROCK' && computerSelection === 'SISSOR'){
+            pScore++;
+            return 'You Win! Rock beats Sissor';
+          } else if(playerSelection === computerSelection) {
+            return 'Tied';  
+          } else {
+            return 'Wrong input';
+          }
+        }
+        
+        for( let i = 0; i < 5; i ++){
+          let playerSelection = window.prompt('Choose a hand');
+          console.log(singlePlay(playerSelection, computerPlay()));
+        }
+
+        if(pScore !== cScore){
+          return pScore > cScore ? 'Player won!' : 'Computer won!';
+        } else {
+          return 'Tied game!';
+        }
+      }
+
+    </script>
+
+  </body>
+</html>
